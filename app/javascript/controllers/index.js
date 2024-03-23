@@ -37,22 +37,24 @@ document.addEventListener("turbo:load", function() {
     }
 
     const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function(event) {
-        const email = document.querySelector('[name="user[email]"]').value.trim();
-        const password = document.querySelector('[name="user[password]"]').value.trim();
-        const errorBox = document.getElementById('empty-box-error');
-        errorBox.textContent = '';
-    
-        if (!email && !password) {
-            errorBox.textContent = 'Enter your details';
-            event.preventDefault();
-        } else if (!email) {
-            errorBox.textContent = 'Enter your email';
-            event.preventDefault();
-        } else if (!password) {
-            errorBox.textContent = 'Enter your password';
-            event.preventDefault();
-        }
-    });
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            const email = document.querySelector('[name="user[email]"]').value.trim();
+            const password = document.querySelector('[name="user[password]"]').value.trim();
+            const errorBox = document.getElementById('empty-box-error');
+            errorBox.textContent = '';
+        
+            if (!email && !password) {
+                errorBox.textContent = 'Enter your details';
+                event.preventDefault();
+            } else if (!email) {
+                errorBox.textContent = 'Enter your email';
+                event.preventDefault();
+            } else if (!password) {
+                errorBox.textContent = 'Enter your password';
+                event.preventDefault();
+            }
+        });
+    }
 
 });
