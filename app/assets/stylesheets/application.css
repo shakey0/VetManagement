@@ -14,10 +14,56 @@
  *= require_self
  */
 
+/* HOMEPAGE STYLES */
 .home-box-hover {
     transition: transform 0.3s ease-in-out;
 }
 
 .home-box-hover:hover {
     transform: scale(1.05);
+}
+
+.wider-field input {
+    width: 360px;
+}
+@media (max-width: 364px) {
+    .wider-field input {
+        width: 350px;
+    }
+}
+@media (max-width: 354px) {
+    .wider-field input {
+        width: 340px;
+    }
+}
+@media (max-width: 344px) {
+    .wider-field input {
+        width: 330px;
+    }
+}
+@media (max-width: 334px) {
+    .wider-field input {
+        width: 320px;
+    }
+}
+@media (max-width: 324px) {
+    .wider-field input {
+        width: 310px;
+    }
+}
+
+.login-box-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
+}
+
+.login-box-error {
+    color: #d46d3e;
+    transform: translateY(-8px);
+}
+
+.forgot-pwd-link {
+    text-decoration: none;
 }

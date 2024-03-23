@@ -23,6 +23,36 @@ script.crossOrigin = "anonymous";
 // Append the script element to the document's body or head
 document.body.appendChild(script);
 
+
 document.addEventListener("turbo:load", function() {
+
+    const loginBoxError = document.getElementById('login-box-error');
+    if (loginBoxError) {
+        console.log('Current error text:', loginBoxError.textContent);
+        if (loginBoxError.textContent === "Invalid Email or password.") {
+            loginBoxError.textContent = "Invalid credentials.";
+        } else {
+            loginBoxError.textContent = "";
+        }
+    }
+
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', function(event) {
+        const email = document.querySelector('[name="user[email]"]').value.trim();
+        const password = document.querySelector('[name="user[password]"]').value.trim();
+        const errorBox = document.getElementById('empty-box-error');
+        errorBox.textContent = '';
+    
+        if (!email && !password) {
+            errorBox.textContent = 'Enter your details';
+            event.preventDefault();
+        } else if (!email) {
+            errorBox.textContent = 'Enter your email';
+            event.preventDefault();
+        } else if (!password) {
+            errorBox.textContent = 'Enter your password';
+            event.preventDefault();
+        }
+    });
 
 });
