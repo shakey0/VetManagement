@@ -10,51 +10,58 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-// Create a script element
-var script = document.createElement("script");
 
-// Set the source of the script to the Bootstrap JS URL
-script.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js";
+document.addEventListener("DOMContentLoaded", function() {
 
-// Use the integrity and crossorigin attributes for security
-script.integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM";
-script.crossOrigin = "anonymous";
+    let isInitialized = false;
 
-// Append the script element to the document's body or head
-document.body.appendChild(script);
-
-
-document.addEventListener("turbo:load", function() {
-
-    const loginBoxError = document.getElementById('login-box-error');
-    if (loginBoxError) {
-        console.log('Current error text:', loginBoxError.textContent);
-        if (loginBoxError.textContent === "Invalid Email or password.") {
-            loginBoxError.textContent = "Invalid credentials.";
-        } else {
-            loginBoxError.textContent = "";
+    function initialize() {
+        if (!isInitialized) {
+            const loginBoxError = document.getElementById('login-box-error');
+            if (loginBoxError) {
+                console.log('Current error text:', loginBoxError.textContent);
+                if (loginBoxError.textContent === "Invalid Email or password.") {
+                    loginBoxError.textContent = "Invalid credentials.";
+                } else {
+                    loginBoxError.textContent = "";
+                }
+            }
+        
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(event) {
+                    const email = document.querySelector('[name="user[email]"]').value.trim();
+                    const password = document.querySelector('[name="user[password]"]').value.trim();
+                    const errorBox = document.getElementById('empty-box-error');
+                    errorBox.textContent = '';
+                
+                    if (!email && !password) {
+                        errorBox.textContent = 'Enter your details';
+                        loginBoxError.textContent = "";
+                        event.preventDefault();
+                    } else if (!email) {
+                        errorBox.textContent = 'Enter your email';
+                        loginBoxError.textContent = "";
+                        event.preventDefault();
+                    } else if (!password) {
+                        errorBox.textContent = 'Enter your password';
+                        loginBoxError.textContent = "";
+                        event.preventDefault();
+                    }
+                });
+            }
         }
     }
 
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            const email = document.querySelector('[name="user[email]"]').value.trim();
-            const password = document.querySelector('[name="user[password]"]').value.trim();
-            const errorBox = document.getElementById('empty-box-error');
-            errorBox.textContent = '';
-        
-            if (!email && !password) {
-                errorBox.textContent = 'Enter your details';
-                event.preventDefault();
-            } else if (!email) {
-                errorBox.textContent = 'Enter your email';
-                event.preventDefault();
-            } else if (!password) {
-                errorBox.textContent = 'Enter your password';
-                event.preventDefault();
-            }
-        });
+    function resetInitialization() {
+        isInitialized = false;
     }
 
+    initialize();
+
+    // Listen for both turbo:load and turbo:render events
+    document.addEventListener("turbo:load", initialize);
+    document.addEventListener("turbo:render", initialize);
+    document.addEventListener("turbo:visit", resetInitialization);
+    
 });
