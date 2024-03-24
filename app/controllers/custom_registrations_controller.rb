@@ -8,6 +8,10 @@ class CustomRegistrationsController < Devise::RegistrationsController
 		flash[:notice] = "Account for #{resource.first_name} #{resource.last_name} created."
 	end
 
+	def after_sign_up_path_for(resource)
+		admin_user_path(resource.id)
+	end
+
 	def ensure_admin!
 		unless current_user&.is_admin?
 			flash[:alert] = "Only admins are authorized to access this page."
