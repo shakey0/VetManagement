@@ -17,7 +17,11 @@ module Admin
         end
     
         def update
-            # update user
+            if @user.update(user_params)
+                redirect_to admin_user_path(@user), notice: "Details for #{@user.first_name} #{@user.last_name} successfully updated."
+            else
+                render :edit
+            end
         end
     
         private
@@ -28,6 +32,10 @@ module Admin
     
         def check_admin
             redirect_to(root_url) unless current_user&.is_admin?
+        end
+
+        def user_params
+            params.require(:user).permit(:first_name, :last_name, :email, :phone, :position, :is_admin)
         end
     
         # other private methods...
