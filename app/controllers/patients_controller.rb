@@ -3,6 +3,7 @@ class PatientsController < ApplicationController
 
   # GET /patients or /patients.json
   def index
+    @title = "Patients"
     @patients = Patient.all
   end
 
@@ -12,6 +13,8 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
+    @title = "Patients"
+    @modify = true
     @patient = Patient.new
   end
 

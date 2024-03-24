@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Patients</h1>
 
-<div id="patients">
-  <% @patients.each do |patient| %>
-    <%= render patient %>
-    <p>
-      <%= link_to "Show this patient", patient %>
-    </p>
-  <% end %>
+<div class="container">
+
+  <h1><%= @title %></h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="table-success">
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @patients.each do |patient| %>
+          <tr onclick="window.location='<%= patient_path(patient) %>'" style="cursor:pointer;">
+            <td><%= patient.first_name %></td>
+            <td><%= patient.last_name %></td>
+            <td><%= patient.email %></td>
+            <td><%= patient.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to "New patient", new_patient_path %>
