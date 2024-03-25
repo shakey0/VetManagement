@@ -5,25 +5,25 @@ module Admin
         before_action :check_admin
     
         def index
-            @title = "Users"
+            @title = "Staff"
             @user_new_link = true
             @users = User.all
         end
 
         def show
-            @title = "Users"
+            @title = "Staff"
             @users_link = true
             @user_new_link = true
         end
 
         def new
-            @title = "Users"
+            @title = "Staff"
             @users_link = true
             @user = User.new
         end
 
         def edit
-            @title = "Users"
+            @title = "Staff"
             @users_link = true
             @user_new_link = true
         end
@@ -31,8 +31,10 @@ module Admin
         def create
             @user = User.new(new_user_params)
             if @user.save
-                redirect_to admin_user_path(@user), notice: 'User successfully created.'
+                redirect_to admin_user_path(@user), notice: "Account for #{new_user_params[:first_name]} #{new_user_params[:last_name]} successfully created."
             else
+                @title = "Staff"
+                @users_link = true
                 render :new
             end
         end

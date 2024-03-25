@@ -20,21 +20,23 @@
             <li><a class="dropdown-item" href="#">Reports</a></li>
 						<li><a class="dropdown-item" href="#">Prescriptions</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Staff List</a></li>
+            <% if current_user&.admin? %>
+              <%= link_to "Staff", admin_users_path, class: "dropdown-item" %>
+            <% end %>
 						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logOutBox">Log Out</button></li>
           </ul>
         </li>
         <% if @title %>
           <li>
             <% if @users_link %>
-              <%= link_to "Users", admin_users_path, class: "nav-link" %>
+              <%= link_to "Staff", admin_users_path, class: "nav-link" %>
             <% elsif @patients_link %>
               <%= link_to "Patients", patients_path, class: "nav-link" %>
             <% end %>
           </li>
           <li class="nav-item">
             <% if @user_new_link %>
-              <%= link_to "New User", new_admin_user_path, class: "nav-link" %>
+              <%= link_to "New Staff", new_admin_user_path, class: "nav-link" %>
             <% elsif @patient_new_link %>
               <%= link_to "New Patient", new_patient_path, class: "nav-link" %>
             <% end %>

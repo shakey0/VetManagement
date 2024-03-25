@@ -1,4 +1,4 @@
-<h1>Listing Users</h1>
+<h1>All Staff</h1>
 
 <table>
     <thead>
@@ -9,7 +9,6 @@
             <th>Phone</th>
             <th>Position</th>
             <th>Admin</th>
-            <th>Actions</th>
         </tr>
     </thead>
 
@@ -23,8 +22,6 @@
             <td><%= user.position %></td>
             <td><%= user.is_admin ? 'Yes' : 'No' %></td>
             <td>
-            <%= link_to 'Edit', edit_admin_user_path(user) %>
-            <!-- Add other actions as needed -->
             </td>
         </tr>
         <% end %>

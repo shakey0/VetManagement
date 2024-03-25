@@ -37,15 +37,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                     if (!email && !password) {
                         errorBox.textContent = 'Enter your details';
-                        loginBoxError.textContent = "";
+                        if (loginBoxError) {
+                            loginBoxError.textContent = "";
+                        }
                         event.preventDefault();
                     } else if (!email) {
                         errorBox.textContent = 'Enter your email';
-                        loginBoxError.textContent = "";
+                        if (loginBoxError) {
+                            loginBoxError.textContent = "";
+                        }
                         event.preventDefault();
                     } else if (!password) {
                         errorBox.textContent = 'Enter your password';
-                        loginBoxError.textContent = "";
+                        if (loginBoxError) {
+                            loginBoxError.textContent = "";
+                        }
                         event.preventDefault();
                     }
                 });
