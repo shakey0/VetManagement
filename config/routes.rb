@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   resources :patients
   devise_for :users, skip: [:registrations]
-  # as :user do
-  #   get 'users/sign_up', to: 'custom_registrations#new', as: :new_user_registration
-  #   post 'users', to: 'custom_registrations#create', as: :user_registration
-  # end
   namespace :admin do
     resources :users, only: [:index, :new, :create, :show, :edit, :update]
   end

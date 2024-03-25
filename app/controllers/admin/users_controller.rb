@@ -30,14 +30,10 @@ module Admin
     
         def create
             @user = User.new(new_user_params)
-            respond_to do |format|
-                if @user.save
-                    format.html { redirect_to admin_user_path(@user), notice: 'User successfully created.' }
-                    format.json { render :show, status: :created, location: @user }
-                else
-                    format.html { render :new, status: :unprocessable_entity }
-                    format.json { render json: @user.errors, status: :unprocessable_entity }
-                end
+            if @user.save
+                redirect_to admin_user_path(@user), notice: 'User successfully created.'
+            else
+                render :new
             end
         end
     
