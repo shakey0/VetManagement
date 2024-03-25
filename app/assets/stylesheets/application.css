@@ -52,7 +52,7 @@
     }
 }
 
-.login-box-container {
+.login-box-container, .form-box-container {
     background-color: #f8f9fa;
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, .1);
@@ -62,6 +62,13 @@
 .login-box-error {
     color: #d46d3e;
     transform: translateY(-8px);
+}
+
+.form-box-error {
+    color: #d46d3e;
+    font-weight: bold;
+    line-height: 1.2;
+    transform: translateY(4px);
 }
 
 .forgot-pwd-link {

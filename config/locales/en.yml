@@ -28,4 +28,30 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "First name required"
+              too_short: "Minimum %{count} characters required"
+            last_name:
+              blank: "Last name required"
+              too_short: "Minimum %{count} characters required"
+            email:
+              blank: "Email address required"
+              invalid: "Email address invalid"
+              taken: "Email address already in use"
+            phone:
+              blank: "Phone number required"
+              invalid: "Phone number invalid"
+            position:
+              blank: "Position required"
+              too_short: "Minimum %{count} characters required"
+            password:
+              blank: "Password required"
+              too_short: "Minimum %{count} characters required"
+            password_confirmation:
+              blank: "Password confirmation required"
+              confirmation: "Passwords do not match"
