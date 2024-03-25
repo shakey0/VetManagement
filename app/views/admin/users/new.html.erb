@@ -6,35 +6,7 @@
 
         <%= form_with(model: [:admin, @user], local: true, data: { turbo: false }) do |form| %>
 
-            <div class="mb-3 wider-field">
-                <%= form.text_field :first_name, autocomplete: "first_name", class: "form-control", placeholder: "First Name" %>
-                <%= content_tag(:div, "&#8226; ".html_safe + @user.errors[:first_name].first, class: "error-message form-box-error") if @user.errors[:first_name].any? %>
-            </div>
-
-            <div class="mb-3 wider-field">
-                <%= form.text_field :last_name, autocomplete: "last_name", class: "form-control", placeholder: "Last Name" %>
-                <%= content_tag(:div, "&#8226; ".html_safe + @user.errors[:last_name].first, class: "error-message form-box-error") if @user.errors[:last_name].any? %>
-            </div>
-
-            <div class="mb-3 wider-field">
-                <%= form.email_field :email, autocomplete: "email", class: "form-control", placeholder: "Email Address" %>
-                <%= content_tag(:div, "&#8226; ".html_safe + @user.errors[:email].first, class: "error-message form-box-error") if @user.errors[:email].any? %>
-            </div>
-
-            <div class="mb-3 wider-field">
-                <%= form.text_field :phone, autocomplete: "phone", class: "form-control", placeholder: "Phone Number" %>
-                <%= content_tag(:div, "&#8226; ".html_safe + @user.errors[:phone].first, class: "error-message form-box-error") if @user.errors[:phone].any? %>
-            </div>
-
-            <div class="mb-3 wider-field">
-                <%= form.text_field :position, autocomplete: "position", class: "form-control", placeholder: "Job Title" %>
-                <%= content_tag(:div, "&#8226; ".html_safe + @user.errors[:position].first, class: "error-message form-box-error") if @user.errors[:position].any? %>
-            </div>
-
-            <div class="mb-3">
-                <%= form.check_box :is_admin, id: "is_admin", class: "form-check-input fs-3 mt-0", style: "cursor: pointer;" %>
-                <%= form.label :is_admin, "Has admin permissions?", class: "ms-1", style: "font-size: 17px; font-weight: bold; color: blue;" %>
-            </div>
+            <%= render "admin/users/fields", form: form %>
 
             <div class="mb-3 wider-field">
                 <% if @minimum_password_length %>
