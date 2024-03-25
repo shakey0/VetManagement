@@ -5,15 +5,40 @@ module Admin
         before_action :check_admin
     
         def index
+            @title = "Users"
+            @user_new_link = true
             @users = User.all
         end
-    
+
         def show
-            # show a single user
+            @title = "Users"
+            @users_link = true
+            @user_new_link = true
+        end
+
+        def new
+            @title = "Users"
+            @users_link = true
+            @user = User.new
+        end
+
+        def edit
+            @title = "Users"
+            @users_link = true
+            @user_new_link = true
         end
     
-        def edit
-            # edit user form
+        def create
+            @user = User.new(new_user_params)
+            respond_to do |format|
+                if @user.save
+                    format.html { redirect_to admin_user_path(@user), notice: 'User successfully created.' }
+                    format.json { render :show, status: :created, location: @user }
+                else
+                    format.html { render :new, status: :unprocessable_entity }
+                    format.json { render json: @user.errors, status: :unprocessable_entity }
+                end
+            end
         end
     
         def update
@@ -34,10 +59,12 @@ module Admin
             redirect_to(root_url) unless current_user&.is_admin?
         end
 
+        def new_user_params
+            params.require(:user).permit(:first_name, :last_name, :email, :phone, :position, :is_admin, :password, :password_confirmation)
+        end
+
         def user_params
             params.require(:user).permit(:first_name, :last_name, :email, :phone, :position, :is_admin)
         end
-    
-        # other private methods...
     end
 end

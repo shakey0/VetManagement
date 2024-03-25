@@ -4,22 +4,29 @@ class PatientsController < ApplicationController
   # GET /patients or /patients.json
   def index
     @title = "Patients"
+    @patient_new_link = true
     @patients = Patient.all
   end
 
   # GET /patients/1 or /patients/1.json
   def show
+    @title = "Patients"
+    @patients_link = true
+    @patient_new_link = true
   end
 
   # GET /patients/new
   def new
     @title = "Patients"
-    @modify = true
+    @patients_link = true
     @patient = Patient.new
   end
 
   # GET /patients/1/edit
   def edit
+    @title = "Patients"
+    @patients_link = true
+    @patient_new_link = true
   end
 
   # POST /patients or /patients.json
@@ -28,7 +35,7 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully created." }
+        format.html { redirect_to patient_url(@patient), notice: "Patient successfully created." }
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new, status: :unprocessable_entity }
