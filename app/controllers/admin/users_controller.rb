@@ -7,7 +7,7 @@ module Admin
         def index
             @title = "Staff"
             @user_new_link = true
-            @users = User.all
+            @users = User.order(:last_name)
         end
 
         def show

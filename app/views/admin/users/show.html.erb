@@ -1,34 +1,36 @@
-<h1>User Profile</h1>
-
-<p>
-    <strong>Name:</strong>
-    <%= @user.first_name %>
-</p>
-
-<p>
-    <strong>Last Name:</strong>
-    <%= @user.last_name %>
-</p>
-
-<p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-</p>
-
-<p>
-    <strong>Phone:</strong>
-    <%= @user.phone %>
-</p>
-
-<p>
-    <strong>Position:</strong>
-    <%= @user.position %>
-</p>
-
-<p>
-    <strong>Admin:</strong>
-    <%= @user.is_admin ? 'Yes' : 'No' %>
-</p>
-
-<%= link_to 'Edit', edit_admin_user_path(@user) %> |
-<%= link_to 'Back to List', admin_users_path %>
+<div class="container mt-4 mb-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="card-title mb-4"><%= @user.first_name %> <%= @user.last_name %></h1>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text fs-5">
+            <strong class="text-primary">Name:</strong>
+            <%= @user.first_name %>
+          </p>
+          <p class="card-text fs-5">
+            <strong class="text-primary">Last Name:</strong>
+            <%= @user.last_name %>
+          </p>
+          <p class="card-text fs-5">
+            <strong class="text-primary">Email:</strong>
+            <%= @user.email %>
+          </p>
+          <p class="card-text fs-5">
+            <strong class="text-primary">Phone:</strong>
+            <%= @user.phone %>
+          </p>
+          <p class="card-text fs-5">
+            <strong class="text-primary">Position:</strong>
+            <%= @user.position %>
+          </p>
+          <p class="card-text fs-5">
+            <strong class="text-primary">Admin:</strong>
+            <%= @user.is_admin ? 'Yes' : 'No' %>
+          </p>
+          <%= link_to 'Edit', edit_admin_user_path(@user), class: 'btn btn-warning btn-lg mt-1' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
