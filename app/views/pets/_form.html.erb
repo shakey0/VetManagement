@@ -27,9 +27,10 @@
   </div>
 
   <div>
-    <%= form.label :patient_id, style: "display: block" %>
-    <%= form.number_field :patient_id %>
+    <strong>Patient:</strong> <%= @patient.first_name %> <%= @patient.last_name %>
   </div>
+
+  <%= form.hidden_field :patient_id %>
 
   <div>
     <%= form.submit %>

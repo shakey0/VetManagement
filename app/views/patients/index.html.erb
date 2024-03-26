@@ -17,13 +17,13 @@
       <tbody>
         <% @patients.each do |patient| %>
           <tr onclick="window.location='<%= patient_path(patient) %>'" style="cursor:pointer;">
-            <td><%= patient.first_name %></td>
-            <td><%= patient.last_name %></td>
+            <td style="vertical-align: middle;"><%= patient.first_name %></td>
+            <td style="vertical-align: middle;"><%= patient.last_name %></td>
             <td><% for pet in patient.pets %>
               <%= pet.name %><span style="color: grey;"> - <%= pet.animal %></span><br>
             <% end %></td>
-            <td><%= patient.email %></td>
-            <td><%= patient.phone %></td>
+            <td style="vertical-align: middle;"><%= patient.email %></td>
+            <td style="vertical-align: middle;"><%= patient.phone %></td>
           </tr>
         <% end %>
       </tbody>

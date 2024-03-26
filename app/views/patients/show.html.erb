@@ -19,6 +19,7 @@
               <span style="color: grey;"> - <%= pet.animal %></span>
             </p>
           <% end %>
+          <%= link_to 'Add New Pet', new_pet_path(patient_id: @patient.id), class: 'btn btn-primary mb-3' %> <br>
           <p class="card-text fs-5">
             <strong class="text-success me-1">Email:</strong>
             <%= @patient.email %>

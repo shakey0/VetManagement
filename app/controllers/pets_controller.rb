@@ -12,7 +12,16 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
-    @pet = Pet.new
+    if params[:patient_id].present?
+      @patient = Patient.find_by(id: params[:patient_id])
+      if @patient
+        @pet = Pet.new(patient_id: @patient.id)
+      else
+        redirect_to root_url, alert: "Patient not found."
+      end
+    else
+      redirect_to root_url, alert: "No patient specified."
+    end
   end
 
   # GET /pets/1/edit
@@ -28,6 +37,7 @@ class PetsController < ApplicationController
         format.html { redirect_to pet_url(@pet), notice: "Pet was successfully created." }
         format.json { render :show, status: :created, location: @pet }
       else
+        @patient = Patient.find(pet_params[:patient_id])
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @pet.errors, status: :unprocessable_entity }
       end
