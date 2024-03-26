@@ -12,6 +12,13 @@
             <strong class="text-success me-1">Surname:</strong>
             <%= @patient.last_name %>
           </p>
+          <% for pet in @patient.pets %>
+            <p class="card-text fs-5">
+              <strong class="text-success me-1">Pet:</strong>
+              <%= link_to pet.name, pet_path(pet), class: "text-decoration-none" %>
+              <span style="color: grey;"> - <%= pet.animal %></span>
+            </p>
+          <% end %>
           <p class="card-text fs-5">
             <strong class="text-success me-1">Email:</strong>
             <%= @patient.email %>
