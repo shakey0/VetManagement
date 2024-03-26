@@ -51,7 +51,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
+        format.html { redirect_to patient_url(@patient), notice: "Patient successfully updated." }
         format.json { render :show, status: :ok, location: @patient }
       else
         @title = "Patients"

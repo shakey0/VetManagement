@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :patients
+  resources :patients, except: [:destroy]
   devise_for :users, skip: [:registrations]
   namespace :admin do
     resources :users, only: [:index, :new, :create, :show, :edit, :update]
