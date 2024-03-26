@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pets
   resources :patients, except: [:destroy]
   devise_for :users, skip: [:registrations]
   namespace :admin do
