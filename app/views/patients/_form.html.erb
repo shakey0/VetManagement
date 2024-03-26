@@ -1,37 +1,30 @@
 <%= form_with(model: patient) do |form| %>
-  <% if patient.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
 
-      <ul>
-        <% patient.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
+  <div class="mb-3 wider-field">
+    <%= form.text_field :first_name, autocomplete: "first_name", class: "form-control", placeholder: "First Name" %>
+    <%= content_tag(:div, "&#8226; ".html_safe + @patient.errors[:first_name].first, class: "error-message form-box-error") if @patient.errors[:first_name].any? %>
   </div>
 
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
+  <div class="mb-3 wider-field">
+      <%= form.text_field :last_name, autocomplete: "last_name", class: "form-control", placeholder: "Last Name" %>
+      <%= content_tag(:div, "&#8226; ".html_safe + @patient.errors[:last_name].first, class: "error-message form-box-error") if @patient.errors[:last_name].any? %>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="mb-3 wider-field">
+      <%= form.email_field :email, autocomplete: "email", class: "form-control", placeholder: "Email Address" %>
+      <%= content_tag(:div, "&#8226; ".html_safe + @patient.errors[:email].first, class: "error-message form-box-error") if @patient.errors[:email].any? %>
   </div>
 
-  <div>
-    <%= form.label :phone, style: "display: block" %>
-    <%= form.text_field :phone %>
+  <div class="mb-3 wider-field">
+      <%= form.text_field :phone, autocomplete: "phone", class: "form-control", placeholder: "Phone Number" %>
+      <%= content_tag(:div, "&#8226; ".html_safe + @patient.errors[:phone].first, class: "error-message form-box-error") if @patient.errors[:phone].any? %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+      <% if @update %>
+        <%= form.submit "Update Patient", class: "btn btn-warning btn-lg mt-1" %>
+      <% else %>
+        <%= form.submit "Create Patient", class: "btn btn-primary btn-lg mt-1" %>
+      <% end %>
   </div>
 <% end %>

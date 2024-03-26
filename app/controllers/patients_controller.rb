@@ -5,7 +5,7 @@ class PatientsController < ApplicationController
   def index
     @title = "Patients"
     @patient_new_link = true
-    @patients = Patient.all
+    @patients = Patient.order(:last_name)
   end
 
   # GET /patients/1 or /patients/1.json
@@ -27,6 +27,7 @@ class PatientsController < ApplicationController
     @title = "Patients"
     @patients_link = true
     @patient_new_link = true
+    @update = true
   end
 
   # POST /patients or /patients.json
@@ -38,6 +39,8 @@ class PatientsController < ApplicationController
         format.html { redirect_to patient_url(@patient), notice: "Patient successfully created." }
         format.json { render :show, status: :created, location: @patient }
       else
+        @title = "Patients"
+        @patients_link = true
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
@@ -51,6 +54,10 @@ class PatientsController < ApplicationController
         format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
         format.json { render :show, status: :ok, location: @patient }
       else
+        @title = "Patients"
+        @patients_link = true
+        @patient_new_link = true
+        @update = true
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end

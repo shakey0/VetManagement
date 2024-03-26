@@ -45,6 +45,7 @@ en:
               taken: "Email address already in use"
             phone:
               blank: "Phone number required"
+              too_short: "Minimum %{count} digits required"
               invalid: "Phone number invalid"
             position:
               blank: "Position required"
@@ -55,3 +56,20 @@ en:
             password_confirmation:
               blank: "Password confirmation required"
               confirmation: "Passwords do not match"
+        patient:
+          attributes:
+            first_name:
+              blank: "First name required"
+              too_short: "Minimum %{count} characters required"
+            last_name:
+              blank: "Last name required"
+              too_short: "Minimum %{count} characters required"
+            email:
+              blank: "Email address required"
+              too_short: "Minimum %{count} characters required"
+              invalid: "Email address invalid"
+              taken: "Email address already in use"
+            phone:
+              blank: "Phone number required"
+              too_short: "Minimum %{count} digits required"
+              invalid: "Phone number invalid"
