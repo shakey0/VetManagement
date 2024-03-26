@@ -43,6 +43,9 @@ module Admin
             if @user.update(user_params)
                 redirect_to admin_user_path(@user), notice: "Details for #{@user.first_name} #{@user.last_name} successfully updated."
             else
+                @title = "Staff"
+                @users_link = true
+                @user_new_link = true
                 render :edit
             end
         end
